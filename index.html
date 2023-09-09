@@ -65,6 +65,7 @@
     <div class="container mt-2 text-center">
         <!-- Letrero para mostrar el código (arriba del botón) -->
         <div id="codeDisplay">Código detectado: <span id="detectedCode"></span></div>
+
         <!-- Botón (debajo del letrero de código) -->
         <button id="startStopButton" onclick="startStopVideo()">Iniciar Video</button>
     </div>
@@ -119,14 +120,8 @@
             isVideoPlaying = !isVideoPlaying;
         }
 
-        // Simulación de detección de código y visualización
-        function simulateCodeDetection() {
-            const fakeCode = "12345"; // Aquí puedes definir el código que deseas mostrar
-            codeDisplay.textContent = fakeCode;
-        }
-
-        // Llama a la función de simulación después de un tiempo para mostrar un código falso
-        setTimeout(simulateCodeDetection, 5000); // Ejemplo: después de 5 segundos
+      
+      
     </script>
 </body>
 </html>

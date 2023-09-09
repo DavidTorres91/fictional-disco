@@ -1,0 +1,27 @@
+{
+  "name": "cam",
+  "version": "1.0.0",
+  "description": "app para inventsrios",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidTorres91/fictional-disco.git#main"
+  },
+  "keywords": [
+    "codebar",
+    "app"
+  ],
+  "author": "Anibal Panameño",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidTorres91/fictional-disco/issues"
+  },
+  "homepage": "https://github.com/DavidTorres91/fictional-disco/tree/main#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "quagga": "^0.6.16"
+  }
+}

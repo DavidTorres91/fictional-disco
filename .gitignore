@@ -1,0 +1,28 @@
+# Ignorar la carpeta node_modules
+node_modules/
+
+# Ignorar archivos compilados y generados
+dist/
+*.js
+*.js.map
+
+# Ignorar archivos de configuración local
+.env
+
+# Ignorar archivos de caché
+cache/
+
+# Ignorar archivos de registro
+logs/
+
+# Ignorar archivos de respaldo
+*.bak
+*.swp
+*.swo
+*.orig
+*.rej
+
+# Ignorar archivos específicos del IDE
+.vscode/
+.idea/
+.DS_Store

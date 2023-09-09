@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner App</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        /* Estilo personalizado para el video */
+        #video {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Estilo para el menú superior */
+        #navbar {
+            background-color: #007bff; /* Cambia a un color azul */
+            color: #fff; /* Color del texto en el menú */
+        }
+
+        /* Estilo para el botón */
+        #startStopButton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Color de fondo del botón */
+            color: #fff; /* Color del texto del botón */
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilo para el letrero de código */
+        #codeDisplay {
+            background-color: #f8f9fa; /* Color de fondo del letrero de código */
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Estilo personalizado para el footer */
+        #footer {
+            background-color: #343a40; /* Color de fondo del footer */
+            color: #fff; /* Color del texto del footer */
+            text-align: center;
+            padding: 10px 0;
+            position: fixed; /* Fijo en la parte inferior */
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú superior (arriba) -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Barcode Scanner</a>
+        </div>
+    </nav>
+
+    <!-- Título y descripción -->
+    <div class="container mt-4 text-center">
+        <h2>Bienvenidos</h2>
+        <p>Esta es una descripción del video.</p>
+    </div>
+
+    <!-- Contenedor para centrar el botón y el video -->
+    <div class="container mt-2 text-center">
+        <!-- Letrero para mostrar el código (arriba del botón) -->
+        <div id="codeDisplay">Código detectado: <span id="detectedCode"></span></div>
+        <!-- Botón (debajo del letrero de código) -->
+        <button id="startStopButton" onclick="startStopVideo()">Iniciar Video</button>
+    </div>
+
+    <!-- Espacio entre el botón y el video -->
+    <div class="container mt-2"></div>
+
+    <!-- Video (debajo del botón y el espacio) -->
+    <div class="container mt-2 text-center">
+        <video id="video" autoplay playsinline></video>
+    </div>
+
+    <!-- Footer (fijo en la parte inferior) -->
+    <footer id="footer">
+        <div class="container">
+            Desarrollado por: Aníbal David Panameño - 2023
+        </div>
+    </footer>
+
+    <script src="node_modules/quagga/dist/quagga.min.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        const startStopButton = document.getElementById('startStopButton');
+        const codeDisplay = document.getElementById('detectedCode');
+        let isVideoPlaying = false;
+
+        function startStopVideo() {
+            if (isVideoPlaying) {
+                // Detener el video
+                if (video.srcObject) {
+                    const stream = video.srcObject;
+                    const tracks = stream.getTracks();
+
+                    tracks.forEach(function(track) {
+                        track.stop();
+                    });
+
+                    video.srcObject = null;
+                }
+                startStopButton.textContent = 'Iniciar Video';
+            } else {
+                // Iniciar el video
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error al acceder a la cámara: ' + error);
+                });
+                startStopButton.textContent = 'Detener Video';
+            }
+            isVideoPlaying = !isVideoPlaying;
+        }
+
+        // Simulación de detección de código y visualización
+        function simulateCodeDetection() {
+            const fakeCode = "12345"; // Aquí puedes definir el código que deseas mostrar
+            codeDisplay.textContent = fakeCode;
+        }
+
+        // Llama a la función de simulación después de un tiempo para mostrar un código falso
+        setTimeout(simulateCodeDetection, 5000); // Ejemplo: después de 5 segundos
+    </script>
+</body>
+</html>
